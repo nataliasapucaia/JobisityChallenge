@@ -10,17 +10,49 @@ import SwiftUI
 struct EpisodeDetailsView: View {
     @StateObject var viewModel: EpisodeDetailsViewModel
 
+    init(viewModel: EpisodeDetailsViewModel) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+        viewModel.onAppear()
+    }
+
     var body: some View {
-        VStack {
+        ScrollView {
+            VStack {
+                if let episodeDetails = viewModel.episodeDetails {
+                    EpisodeNameView(season: episodeDetails.season, number: episodeDetails.number, name: episodeDetails.name)
+                    EpisodeSummaryView(summary: viewModel.parseHTMLToPlainString(html: episodeDetails.summary) ?? "")
 
-            Text(viewModel.episodeDetails?.name ?? "")
-            Text(viewModel.episodeDetails?.summary ?? "")
-            Text("Season \(viewModel.episodeDetails?.season ?? 0)")
-            Text("Episode number \(viewModel.episodeDetails?.number ?? 0)")
+                    AsyncImage(url: URL(string: episodeDetails.image?.original ?? "")) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                }
+            }
         }
-        .onAppear{
-            viewModel.onAppear()
-        }
+    }
+}
 
+struct EpisodeNameView: View {
+    var season: Int
+    var number: Int
+    var name: String
+
+    var body: some View {
+        Text("S\(season):\(number) \(name)")
+            .font(.title)
+    }
+}
+
+struct EpisodeSummaryView: View {
+    var summary: String
+
+    var body: some View {
+        Text(summary)
+            .padding()
+            .font(.body)
+            .multilineTextAlignment(.leading)
     }
 }

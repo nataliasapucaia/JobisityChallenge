@@ -13,5 +13,11 @@ struct EpisodeDetailsModel: Codable {
     let number: Int
     let season: Int
     let summary: String
-//    let image: String
+    let image: EpisodeImage?
+}
+
+
+struct EpisodeImage: Codable {
+    let medium: String?
+    let original: String?
 }
