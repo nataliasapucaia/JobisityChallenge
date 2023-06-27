@@ -11,7 +11,7 @@ import SwiftUI
 struct JobsityStreamingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SeriesListView(viewModel: SeriesListViewModel())
         }
     }
 }
