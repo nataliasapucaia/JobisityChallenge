@@ -13,7 +13,7 @@ struct SeriesListView: View {
                                 image
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(width: 50, height: 100)
+                                    .frame(width: 100, height: 200)
                             } placeholder: {
                                 ProgressView()
                             }

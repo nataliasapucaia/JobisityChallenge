@@ -17,13 +17,13 @@ class NetworkRequest {
         return try JSONDecoder().decode([SeriesModel].self, from: data)
     }
 
-    public func fetchEpisodes(with id: Int) async throws -> [EpisodesModel] {
+    public func fetchEpisodes(with id: Int) async throws -> [EpisodeModel] {
         guard let url = URL(string: "https://api.tvmaze.com/shows/\(id)/episodes") else {
             throw URLError(.badURL)
         }
 
         let (data, _) = try await URLSession.shared.data(from: url)
-        return try JSONDecoder().decode([EpisodesModel].self, from: data)
+        return try JSONDecoder().decode([EpisodeModel].self, from: data)
     }
 
     public func fetchEpisodeDetails(id: Int, season: Int, number: Int) async throws -> EpisodeDetailsModel {

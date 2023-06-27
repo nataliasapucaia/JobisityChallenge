@@ -2,12 +2,13 @@ import SwiftUI
 
 class SeriesDetailsViewModel: ObservableObject {
     var networkRequest = NetworkRequest()
-    @Published var episodes: [EpisodesModel] = []
+    @Published var episodes: [EpisodeModel] = []
     let seriesDetails: SeriesModel
 
     public init(seriesDetails: SeriesModel ) {
         self.seriesDetails = seriesDetails
     }
+    
     func onAppear() {
         Task {
             do {

@@ -10,6 +10,11 @@ import SwiftUI
 struct SeriesDetailsView: View {
     @StateObject var viewModel: SeriesDetailsViewModel
 
+    init(viewModel: SeriesDetailsViewModel) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+        viewModel.onAppear()
+    }
+
     var body: some View {
         NameView(name: viewModel.seriesDetails.name)
         let imageURL = URL(string: viewModel.seriesDetails.image?.original ?? "")
@@ -27,13 +32,13 @@ struct SeriesDetailsView: View {
                 NewEpisodesView(days: viewModel.parseScheduleDays(days: viewModel.seriesDetails.schedule.days), time: viewModel.seriesDetails.schedule.time)
                 SummaryView(summary: viewModel.parseHTMLToPlainString(html: viewModel.seriesDetails.summary))
 
-                List(viewModel.episodes){ episode in
-                    Text("\(episode.season) x \(episode.number) - \(episode.name)")
+                List(viewModel.episodes) { episode in
+                    NavigationLink(destination: EpisodeDetailsView(viewModel: EpisodeDetailsViewModel(seriesId: viewModel.seriesDetails.id, season: episode.season, number: episode.number))) {
+                        Text("\(episode.season) x \(episode.number) - \(episode.name)")
+                    }
                 }
             }
-            .onAppear{
-                viewModel.onAppear()
-            }
+
 //        }
     }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EpisodesModel: Codable, Identifiable {
+struct EpisodeModel: Codable, Identifiable, Hashable {
     let id: Int
     let season: Int
     let number: Int
