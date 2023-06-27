@@ -30,7 +30,7 @@ struct SeriesDetailsView: View {
 
             GenresView(genres: viewModel.seriesDetails.genres)
             NewEpisodesView(days: viewModel.parseScheduleDays(days: viewModel.seriesDetails.schedule.days), time: viewModel.seriesDetails.schedule.time)
-            SummaryView(summary: viewModel.parseHTMLToPlainString(html: viewModel.seriesDetails.summary))
+            SummaryView(summary: viewModel.parseHTMLToPlainString(html: viewModel.seriesDetails.summary ?? ""))
 
             List {
                 ForEach(viewModel.groupedEpisodes.keys.sorted(), id: \.self) { season in

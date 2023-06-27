@@ -7,13 +7,17 @@
 
 import Foundation
 
+struct SearchSeriesModel: Codable {
+    let show: SeriesModel
+}
+
 struct SeriesModel: Codable, Identifiable {
     let id: Int
     let name: String
     let image: ShowImage?
     let genres: [String]
     let schedule: Schedule
-    let summary: String
+    let summary: String?
 }
 
 

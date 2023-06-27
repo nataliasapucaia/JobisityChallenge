@@ -17,6 +17,15 @@ class NetworkRequest {
         return try JSONDecoder().decode([SeriesModel].self, from: data)
     }
 
+    public func fetchSearchSeries(keyword: String) async throws -> [SearchSeriesModel] {
+        guard let url = URL(string: "https://api.tvmaze.com/search/shows?q=\(keyword)") else {
+            throw URLError(.badURL)
+        }
+
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return try JSONDecoder().decode([SearchSeriesModel].self, from: data)
+    }
+
     public func fetchEpisodes(with id: Int) async throws -> [EpisodeModel] {
         guard let url = URL(string: "https://api.tvmaze.com/shows/\(id)/episodes") else {
             throw URLError(.badURL)
