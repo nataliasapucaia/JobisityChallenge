@@ -17,6 +17,9 @@
 		D15B2F242A4A419D00B59707 /* EpisodesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15B2F232A4A419D00B59707 /* EpisodesModel.swift */; };
 		D15B2F282A4A5DFB00B59707 /* SeriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15B2F272A4A5DFB00B59707 /* SeriesListViewModel.swift */; };
 		D15B2F2B2A4A6A1400B59707 /* SeriesDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15B2F2A2A4A6A1400B59707 /* SeriesDetailsViewModel.swift */; };
+		D15B2F382A4B286F00B59707 /* EpisodeDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15B2F372A4B286F00B59707 /* EpisodeDetailsViewModel.swift */; };
+		D15B2F3A2A4B297D00B59707 /* EpisodeDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15B2F392A4B297D00B59707 /* EpisodeDetailsModel.swift */; };
+		D15B2F3C2A4B2B3A00B59707 /* EpisodeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15B2F3B2A4B2B3A00B59707 /* EpisodeDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		D15B2F232A4A419D00B59707 /* EpisodesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesModel.swift; sourceTree = "<group>"; };
 		D15B2F272A4A5DFB00B59707 /* SeriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesListViewModel.swift; sourceTree = "<group>"; };
 		D15B2F2A2A4A6A1400B59707 /* SeriesDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailsViewModel.swift; sourceTree = "<group>"; };
+		D15B2F372A4B286F00B59707 /* EpisodeDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsViewModel.swift; sourceTree = "<group>"; };
+		D15B2F392A4B297D00B59707 /* EpisodeDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsModel.swift; sourceTree = "<group>"; };
+		D15B2F3B2A4B2B3A00B59707 /* EpisodeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +70,9 @@
 			isa = PBXGroup;
 			children = (
 				D15B2F0F2A49DB2400B59707 /* JobsityStreamingApp.swift */,
-				D15B2F2C2A4A6E5100B59707 /* SeriesDetails */,
 				D15B2F292A4A696300B59707 /* SeriesList */,
+				D15B2F2C2A4A6E5100B59707 /* SeriesDetails */,
+				D15B2F362A4B285400B59707 /* EpisodeDetails */,
 				D15B2F1F2A49F29E00B59707 /* NetworkRequest.swift */,
 				D15B2F132A49DB2600B59707 /* Assets.xcassets */,
 				D15B2F152A49DB2600B59707 /* Preview Content */,
@@ -101,6 +108,16 @@
 			path = SeriesDetails;
 			sourceTree = "<group>";
 		};
+		D15B2F362A4B285400B59707 /* EpisodeDetails */ = {
+			isa = PBXGroup;
+			children = (
+				D15B2F392A4B297D00B59707 /* EpisodeDetailsModel.swift */,
+				D15B2F3B2A4B2B3A00B59707 /* EpisodeDetailsView.swift */,
+				D15B2F372A4B286F00B59707 /* EpisodeDetailsViewModel.swift */,
+			);
+			path = EpisodeDetails;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,6 +134,8 @@
 			dependencies = (
 			);
 			name = JobsityStreaming;
+			packageProductDependencies = (
+			);
 			productName = JobsityStreaming;
 			productReference = D15B2F0C2A49DB2400B59707 /* JobsityStreaming.app */;
 			productType = "com.apple.product-type.application";
@@ -145,6 +164,8 @@
 				Base,
 			);
 			mainGroup = D15B2F032A49DB2400B59707;
+			packageReferences = (
+			);
 			productRefGroup = D15B2F0D2A49DB2400B59707 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -174,10 +195,13 @@
 				D15B2F282A4A5DFB00B59707 /* SeriesListViewModel.swift in Sources */,
 				D15B2F122A49DB2400B59707 /* SeriesListView.swift in Sources */,
 				D15B2F1E2A49F22B00B59707 /* SeriesModel.swift in Sources */,
+				D15B2F3C2A4B2B3A00B59707 /* EpisodeDetailsView.swift in Sources */,
 				D15B2F2B2A4A6A1400B59707 /* SeriesDetailsViewModel.swift in Sources */,
 				D15B2F222A49FA4B00B59707 /* SeriesDetailsView.swift in Sources */,
 				D15B2F242A4A419D00B59707 /* EpisodesModel.swift in Sources */,
 				D15B2F202A49F29E00B59707 /* NetworkRequest.swift in Sources */,
+				D15B2F382A4B286F00B59707 /* EpisodeDetailsViewModel.swift in Sources */,
+				D15B2F3A2A4B297D00B59707 /* EpisodeDetailsModel.swift in Sources */,
 				D15B2F102A49DB2400B59707 /* JobsityStreamingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
