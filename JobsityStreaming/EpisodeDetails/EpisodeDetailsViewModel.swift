@@ -26,7 +26,6 @@ class EpisodeDetailsViewModel: ObservableObject {
         }
     }
 
-
     func parseHTMLToPlainString(html: String) -> String? {
         guard let data = html.data(using: .utf8) else {
             return nil

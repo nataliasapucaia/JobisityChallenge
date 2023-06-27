@@ -19,27 +19,35 @@ struct SeriesDetailsView: View {
         NameView(name: viewModel.seriesDetails.name)
         let imageURL = URL(string: viewModel.seriesDetails.image?.original ?? "")
 //        ScrollView {
-            VStack(spacing: 10) {
-                AsyncImage(url: imageURL) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                } placeholder: {
-                    Color.gray
-                }
-
-                GenresView(genres: viewModel.seriesDetails.genres)
-                NewEpisodesView(days: viewModel.parseScheduleDays(days: viewModel.seriesDetails.schedule.days), time: viewModel.seriesDetails.schedule.time)
-                SummaryView(summary: viewModel.parseHTMLToPlainString(html: viewModel.seriesDetails.summary))
-
-                List(viewModel.episodes) { episode in
-                    NavigationLink(destination: EpisodeDetailsView(viewModel: EpisodeDetailsViewModel(seriesId: viewModel.seriesDetails.id, season: episode.season, number: episode.number))) {
-                        Text("\(episode.season) x \(episode.number) - \(episode.name)")
-                    }
-                }
+        VStack(spacing: 10) {
+            AsyncImage(url: imageURL) { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+            } placeholder: {
+                Color.gray
             }
 
-//        }
+            GenresView(genres: viewModel.seriesDetails.genres)
+            NewEpisodesView(days: viewModel.parseScheduleDays(days: viewModel.seriesDetails.schedule.days), time: viewModel.seriesDetails.schedule.time)
+            SummaryView(summary: viewModel.parseHTMLToPlainString(html: viewModel.seriesDetails.summary))
+
+            List {
+                ForEach(viewModel.groupedEpisodes.keys.sorted(), id: \.self) { season in
+                    Section {
+                        ForEach(viewModel.groupedEpisodes[season]!, id: \.self) { episode in
+                            NavigationLink(destination: EpisodeDetailsView(viewModel: EpisodeDetailsViewModel(seriesId: viewModel.seriesDetails.id, season: episode.season, number: episode.number))) {
+                                Text("\(episode.number). \(episode.name)")
+                            }
+                        }
+                    } header: {
+                        Text("Season \(season)")
+                    }
+
+                }
+            }
+        }
+//     }
     }
 
 
