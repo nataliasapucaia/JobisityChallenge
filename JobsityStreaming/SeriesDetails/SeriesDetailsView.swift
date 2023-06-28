@@ -16,61 +16,49 @@ struct SeriesDetailsView: View {
     }
 
     var body: some View {
-        NameView(name: viewModel.seriesDetails.name)
         let imageURL = URL(string: viewModel.seriesDetails.image?.original ?? "")
-//        ScrollView {
-        VStack(spacing: 10) {
-            AsyncImage(url: imageURL) { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-            } placeholder: {
-                Color.gray
-            }
-
-            GenresView(genres: viewModel.seriesDetails.genres)
-            NewEpisodesView(days: viewModel.parseScheduleDays(days: viewModel.seriesDetails.schedule.days), time: viewModel.seriesDetails.schedule.time)
-            SummaryView(summary: viewModel.parseHTMLToPlainString(html: viewModel.seriesDetails.summary ?? ""))
-
-            List {
-                ForEach(viewModel.groupedEpisodes.keys.sorted(), id: \.self) { season in
-                    Section {
-                        ForEach(viewModel.groupedEpisodes[season]!, id: \.self) { episode in
-                            NavigationLink(destination: EpisodeDetailsView(viewModel: EpisodeDetailsViewModel(seriesId: viewModel.seriesDetails.id, season: episode.season, number: episode.number))) {
-                                Text("\(episode.number). \(episode.name)")
-                            }
-                        }
-                    } header: {
-                        Text("Season \(season)")
-                    }
-
+        ScrollView {
+            VStack(alignment: .leading, spacing: 10) {
+                AsyncImage(url: imageURL) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    ProgressView()
                 }
+
+                NameView(name: viewModel.seriesDetails.name)
+                Divider()
+                    .background(.gray)
+                    .padding([.leading, .trailing])
+                GenresView(genres: viewModel.seriesDetails.genres)
+                NewEpisodesView(days: viewModel.parseScheduleDays(days: viewModel.seriesDetails.schedule.days), time: viewModel.seriesDetails.schedule.time)
+                Divider()
+                    .background(.gray)
+                    .padding([.leading, .trailing])
+                SummaryView(summary: viewModel.parseHTMLToPlainString(html: viewModel.seriesDetails.summary ?? ""))
+                Divider()
+                    .background(.gray)
+                    .padding([.leading, .trailing])
+                EpisodesView(viewModel: viewModel)
             }
         }
-//     }
+        .background(
+            Color("DarkBlue")
+        )
+        .navigationBarBackground()
+
     }
-
-
 }
-
 struct NameView: View {
     var name: String
 
     var body: some View {
         Text(name)
             .font(.title)
-    }
-}
-
-struct GenresView: View {
-    var genres: [String]
-
-    var body: some View {
-        HStack {
-            ForEach(Array(genres.enumerated()), id: \.1) { index, genre in
-                Text("\(genre)\(index != genres.count - 1 ? " •" : "")")
-            }
-        }
+            .bold()
+            .foregroundColor(.white)
+            .padding(.leading)
     }
 }
 
@@ -92,6 +80,23 @@ struct NewEpisodesView: View {
             episodesText = "New episodes every \(days) at \(time)"
         }
         return Text(episodesText)
+            .foregroundColor(.white)
+            .padding(.leading)
+    }
+}
+
+struct GenresView: View {
+    var genres: [String]
+
+    var body: some View {
+        HStack {
+            ForEach(Array(genres.enumerated()), id: \.1) { index, genre in
+                Text("\(genre)\(index != genres.count - 1 ? " •" : "")")
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.white)
+            }
+        }
+        .padding(.leading)
     }
 }
 
@@ -99,8 +104,49 @@ struct SummaryView: View {
     var summary: String?
 
     var body: some View {
+        Text("Summary")
+            .font(.title2)
+            .foregroundColor(.white)
+            .padding(.leading)
+
         Text(summary ?? "")
-            .padding()
-            .multilineTextAlignment(.center)
+            .font(.body)
+            .padding([.leading, .trailing])
+            .multilineTextAlignment(.leading)
+            .foregroundColor(.white)
+
+    }
+}
+
+struct EpisodesView: View {
+    var viewModel: SeriesDetailsViewModel
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            ForEach(viewModel.groupedEpisodes.keys.sorted(), id: \.self) { season in
+                VStack(alignment: .leading) {
+                    Text("Season \(season)")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .padding()
+
+                    ForEach(viewModel.groupedEpisodes[season] ?? [], id: \.self) { episode in
+                        NavigationLink(destination: EpisodeDetailsView(viewModel: EpisodeDetailsViewModel(seriesId: viewModel.seriesDetails.id, season: episode.season, number: episode.number))) {
+                            HStack {
+                                Text("\(episode.number). \(episode.name)")
+                                    .font(.title3)
+                                    .foregroundColor(.white)
+                                    .padding(.leading)
+                                    .padding(.top, 2)
+                            }
+                        }
+                        Divider()
+                            .background(.gray)
+                            .padding([.leading, .trailing])
+                    }
+                }
+                .padding(.vertical, 10)
+            }
+        }
     }
 }

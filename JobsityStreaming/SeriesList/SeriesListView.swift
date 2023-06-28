@@ -23,9 +23,16 @@ struct SeriesListView: View {
                             viewModel.loadMoreSeries()
                         }
                     }
+                    .listRowBackground(Color.clear)
                 }
+                .scrollContentBackground(.hidden)
+                .background(
+                    Color("DarkBlue")
+                )
                 .searchable(text: $viewModel.searchText)
+                .foregroundColor(.white)
                 .navigationTitle("Series")
+                .navigationBarBackground()
                 }
         }
         .onAppear{
@@ -43,12 +50,15 @@ struct SeriesRowView: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 200)
+                    .cornerRadius(25)
+                    .frame(width: 150, height: 300)
             } placeholder: {
                 ProgressView()
+                    .frame(width: 150, height: 300)
             }
 
             Text(series.name)
+                .foregroundColor(.white)
         }
     }
 }
