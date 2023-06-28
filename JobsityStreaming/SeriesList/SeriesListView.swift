@@ -18,10 +18,15 @@ struct SeriesListView: View {
                             SeriesRowView(series: series)
                         }
                     }
+                    .onAppear{
+                        if series.id == viewModel.series.last?.id {
+                            viewModel.loadMoreSeries()
+                        }
+                    }
                 }
                 .searchable(text: $viewModel.searchText)
                 .navigationTitle("Series")
-            }
+                }
         }
         .onAppear{
             viewModel.onAppear()

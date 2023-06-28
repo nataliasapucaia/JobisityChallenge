@@ -3,6 +3,7 @@ import Combine
 
 class SeriesListViewModel: ObservableObject {
     private var disposeBag = Set<AnyCancellable>()
+    private var currentPage: Int = 0
     var networkRequest = NetworkRequest()
     @Published var series: [SeriesModel] = []
     @Published var searchText = ""
@@ -21,7 +22,7 @@ class SeriesListViewModel: ObservableObject {
     func fetchSeries(page: Int = 0) {
         Task {
             do {
-                let fetchedSeries = try await networkRequest.fetchSeries()
+                let fetchedSeries = try await networkRequest.fetchSeries(page: currentPage)
                 await MainActor.run {
                     self.series.append(contentsOf: fetchedSeries)
                     self.initialSeries.append(contentsOf: series)
@@ -30,6 +31,11 @@ class SeriesListViewModel: ObservableObject {
                 print(error.localizedDescription)
             }
         }
+    }
+
+    func loadMoreSeries() {
+        currentPage += 1
+        fetchSeries(page: currentPage)
     }
 
     func filterSeries(with keyword: String) {

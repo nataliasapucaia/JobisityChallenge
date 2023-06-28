@@ -8,8 +8,8 @@
 import Foundation
 
 class NetworkRequest {
-    public func fetchSeries() async throws -> [SeriesModel] {
-        guard let url = URL(string: "https://api.tvmaze.com/shows?page=0") else {
+    public func fetchSeries(page: Int) async throws -> [SeriesModel] {
+        guard let url = URL(string: "https://api.tvmaze.com/shows?page=\(page)") else {
             throw URLError(.badURL)
         }
 
