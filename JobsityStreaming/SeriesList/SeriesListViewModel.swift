@@ -1,14 +1,21 @@
 import SwiftUI
 import Combine
 
+enum RequestState {
+    case searching
+    case fetched
+    case noResults
+}
+
 class SeriesListViewModel: ObservableObject {
-    private var disposeBag = Set<AnyCancellable>()
-    private var currentPage: Int = 0
-    var networkRequest = NetworkRequest()
     @Published var series: [SeriesModel] = []
     @Published var searchText = ""
 
+    private var disposeBag = Set<AnyCancellable>()
+    private var currentPage: Int = 0
+    var networkRequest = NetworkRequest()
     var initialSeries: [SeriesModel] = []
+    var requestState: RequestState = .searching
 
     init() {
         self.debounceTextChanges()
@@ -24,6 +31,7 @@ class SeriesListViewModel: ObservableObject {
             do {
                 let fetchedSeries = try await networkRequest.fetchSeries(page: currentPage)
                 await MainActor.run {
+                    requestState = .fetched
                     self.series.append(contentsOf: fetchedSeries)
                     self.initialSeries.append(contentsOf: series)
                 }
@@ -41,13 +49,18 @@ class SeriesListViewModel: ObservableObject {
     func filterSeries(with keyword: String) {
         guard !keyword.isEmpty else {
             series = initialSeries
+            requestState = .fetched
             return
         }
         Task {
             do {
                 let filteredSeries = try await networkRequest.fetchSearchSeries(keyword: keyword)
                 await MainActor.run {
+                    requestState = .fetched
                     self.series = filteredSeries.map { $0.show }
+                    if filteredSeries.isEmpty {
+                        requestState = .noResults
+                    }
                 }
             } catch {
                 print(error.localizedDescription)
