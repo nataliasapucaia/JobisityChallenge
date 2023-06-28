@@ -35,20 +35,20 @@ struct SeriesListView: View {
     }
 
     var list: some View {
-        List(viewModel.series){ series in
-            NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(seriesDetails: series))) {
-                HStack {
-                    SeriesRowView(series: series)
+        ScrollView {
+            LazyVStack {
+                ForEach(viewModel.series.lazy, id: \.id) { series in
+                    NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(seriesDetails: series))) {
+                            SeriesRowView(series: series)
+                    }
+                    .onAppear{
+                        if series.id == viewModel.series.last?.id {
+                            viewModel.loadMoreSeries()
+                        }
+                    }
                 }
             }
-            .onAppear{
-                if series.id == viewModel.series.last?.id {
-                    viewModel.loadMoreSeries()
-                }
-            }
-            .listRowBackground(Color.clear)
         }
-        .scrollContentBackground(.hidden)
         .background(
             Color("DarkBlue")
         )
@@ -61,20 +61,22 @@ struct SeriesRowView: View {
     var series: SeriesModel
 
     var body: some View {
-        HStack {
+        VStack(alignment: .center, spacing: 0) {
             AsyncImage(url: URL(string: series.image?.original ?? "")) { image in
                 image
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(25)
-                    .frame(width: 150, height: 300)
+                    .aspectRatio(contentMode: .fill)
+                    .cornerRadius(10)
+                    .frame(maxWidth: 200)
             } placeholder: {
                 ProgressView()
                     .frame(width: 150, height: 300)
             }
             Text(series.name)
+                .bold()
+                .font(.largeTitle)
                 .foregroundColor(.white)
+                .padding(.bottom, 20)
         }
     }
 }
-
