@@ -8,7 +8,6 @@ import SwiftUI
 
 struct SeriesListView: View {
     @StateObject var viewModel: SeriesListViewModel
-    @State private var searchText = ""
 
     var body: some View {
         VStack {
@@ -20,10 +19,7 @@ struct SeriesListView: View {
                         }
                     }
                 }
-                .searchable(text: $searchText)
-                .onChange(of: searchText) { newValue in
-                    viewModel.filterSeries(with: newValue)
-                }
+                .searchable(text: $viewModel.searchText)
                 .navigationTitle("Series")
             }
         }

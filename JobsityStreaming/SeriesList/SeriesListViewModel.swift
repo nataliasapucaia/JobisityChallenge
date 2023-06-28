@@ -1,23 +1,30 @@
 import SwiftUI
+import Combine
 
 class SeriesListViewModel: ObservableObject {
+    private var disposeBag = Set<AnyCancellable>()
     var networkRequest = NetworkRequest()
     @Published var series: [SeriesModel] = []
-    @Published var filteredSeries: [SearchSeriesModel] = []
+    @Published var searchText = ""
+
     var initialSeries: [SeriesModel] = []
+
+    init() {
+        self.debounceTextChanges()
+    }
 
     func onAppear() {
         fetchSeries()
     }
 
 
-    func fetchSeries() {
+    func fetchSeries(page: Int = 0) {
         Task {
             do {
                 let fetchedSeries = try await networkRequest.fetchSeries()
                 await MainActor.run {
-                    self.series = fetchedSeries
-                    self.initialSeries = series
+                    self.series.append(contentsOf: fetchedSeries)
+                    self.initialSeries.append(contentsOf: series)
                 }
             } catch {
                 print(error.localizedDescription)
@@ -26,24 +33,29 @@ class SeriesListViewModel: ObservableObject {
     }
 
     func filterSeries(with keyword: String) {
+        guard !keyword.isEmpty else {
+            series = initialSeries
+            return
+        }
         Task {
             do {
                 let filteredSeries = try await networkRequest.fetchSearchSeries(keyword: keyword)
                 await MainActor.run {
-                    self.filteredSeries = filteredSeries
-                    let extractedSeries = filteredSeries.map { $0.show }
-                    series = extractedSeries
-                    if keyword.isEmpty {
-                        series = initialSeries
-                    } else if filteredSeries.count == 0 {
-                        print("series nao encontras")
-                    }
-                    print("filteresSeries", self.filteredSeries)
+                    self.series = filteredSeries.map { $0.show }
                 }
             } catch {
-                print(error)
                 print(error.localizedDescription)
             }
         }
     }
+
+    private func debounceTextChanges() {
+        $searchText
+            .debounce(for: 2, scheduler: RunLoop.main)
+            .sink {
+                self.filterSeries(with: $0)
+            }
+            .store(in: &disposeBag)
+    }
+
 }
