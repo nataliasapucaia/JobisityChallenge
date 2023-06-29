@@ -43,6 +43,7 @@ struct SeriesDetailsView: View {
                 EpisodesView(viewModel: viewModel)
             }
         }
+//        .navigationBarTitleDisplayMode(.inline)
         .background(
             Color("DarkBlue")
         )

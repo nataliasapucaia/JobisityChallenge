@@ -6,18 +6,24 @@ struct SeriesListView: View {
     var body: some View {
         VStack {
             NavigationView {
-                switch viewModel.requestState {
-                case .fetched:
-                    list
-                case .searching:
-                    ProgressView()
-                case .noResults:
-                    noResult
+                ScrollView {
+                    switch viewModel.requestState {
+                    case .fetched:
+                        list
+                    case .searching:
+                        ProgressView()
+                    case .noResults:
+                        noResult
+                    }
                 }
+                .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always))
+                .foregroundColor(.white)
+                .background(
+                    Color("DarkBlue")
+                )
             }
+
         }
-        .searchable(text: $viewModel.searchText)
-        .foregroundColor(.white)
         .onAppear{
             viewModel.onAppear()
         }
@@ -35,16 +41,14 @@ struct SeriesListView: View {
     }
 
     var list: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(viewModel.series.lazy, id: \.id) { series in
-                    NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(seriesDetails: series))) {
-                            SeriesRowView(series: series)
-                    }
-                    .onAppear{
-                        if series.id == viewModel.series.last?.id {
-                            viewModel.loadMoreSeries()
-                        }
+        LazyVStack {
+            ForEach(viewModel.series.lazy, id: \.id) { series in
+                NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(seriesDetails: series))) {
+                    SeriesRowView(series: series)
+                }
+                .onAppear{
+                    if series.id == viewModel.series.last?.id {
+                        viewModel.loadMoreSeries()
                     }
                 }
             }
