@@ -25,5 +25,6 @@ struct ColoredNavigationBar: ViewModifier {
                 for: .navigationBar
             )
             .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
     }
 }
