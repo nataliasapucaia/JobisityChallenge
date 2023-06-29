@@ -11,7 +11,11 @@ struct SeriesListView: View {
                     case .fetched:
                         list
                     case .searching:
-                        ProgressView()
+                        ZStack {
+                            Color("DarkBlue")
+                            ProgressView()
+                        }
+
                     case .noResults:
                         noResult
                     }
