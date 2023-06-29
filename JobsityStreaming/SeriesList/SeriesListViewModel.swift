@@ -42,8 +42,10 @@ class SeriesListViewModel: ObservableObject {
     }
 
     func loadMoreSeries() {
-        currentPage += 1
-        fetchSeries(page: currentPage)
+        while currentPage < 278 {
+            currentPage += 1
+            fetchSeries(page: currentPage)
+        }
     }
 
     func filterSeries(with keyword: String) {
