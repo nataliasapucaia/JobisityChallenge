@@ -16,30 +16,16 @@ struct SeriesDetailsView: View {
     }
 
     var body: some View {
-        let imageURL = URL(string: viewModel.seriesDetails.image?.original ?? "")
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
-                AsyncImage(url: imageURL) { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
-                } placeholder: {
-                    ProgressView()
-                }
-
+                AsyncImageView(imageURL: viewModel.seriesDetails.image?.original ?? "")
                 NameView(name: viewModel.seriesDetails.name)
-                Divider()
-                    .background(.gray)
-                    .padding([.leading, .trailing])
+                GreyDividerView()
                 GenresView(genres: viewModel.seriesDetails.genres)
                 NewEpisodesView(days: viewModel.parseScheduleDays(days: viewModel.seriesDetails.schedule.days), time: viewModel.seriesDetails.schedule.time)
-                Divider()
-                    .background(.gray)
-                    .padding([.leading, .trailing])
+                GreyDividerView()
                 SummaryView(summary: viewModel.parseHTMLToPlainString(html: viewModel.seriesDetails.summary ?? ""))
-                Divider()
-                    .background(.gray)
-                    .padding([.leading, .trailing])
+                GreyDividerView()
                 EpisodesView(viewModel: viewModel)
             }
         }
@@ -51,6 +37,15 @@ struct SeriesDetailsView: View {
 
     }
 }
+
+struct GreyDividerView: View {
+    var body: some View {
+        Divider()
+            .background(.gray)
+            .padding([.leading, .trailing])
+    }
+}
+
 struct NameView: View {
     var name: String
 

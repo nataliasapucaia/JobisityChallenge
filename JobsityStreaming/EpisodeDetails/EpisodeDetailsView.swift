@@ -20,37 +20,18 @@ struct EpisodeDetailsView: View {
             ScrollView {
                 VStack {
                     if let episodeDetails = viewModel.episodeDetails {
-                        EpisodeImageView(imageURL: episodeDetails.image?.original ?? "")
+                        AsyncImageView(imageURL: episodeDetails.image?.original ?? "")
                         EpisodeNameView(season: episodeDetails.season, number: episodeDetails.number, name: episodeDetails.name)
                         EpisodeSummaryView(summary: viewModel.parseHTMLToPlainString(html: episodeDetails.summary) ?? "")
 
                     }
                 }
-//                .background(
-//                    Color("DarkBlue").edgesIgnoringSafeArea(.all)
-//                )
             }
-
             .navigationBarBackground()
         }
         .background(
             Color("DarkBlue").edgesIgnoringSafeArea(.all)
         )
-
-    }
-}
-
-struct EpisodeImageView: View {
-    var imageURL: String
-
-    var body: some View {
-        AsyncImage(url: URL(string: imageURL)) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-        } placeholder: {
-            ProgressView()
-        }
 
     }
 }
