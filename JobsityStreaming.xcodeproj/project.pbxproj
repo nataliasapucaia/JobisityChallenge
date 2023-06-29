@@ -104,9 +104,9 @@
 		D15B2F2C2A4A6E5100B59707 /* SeriesDetails */ = {
 			isa = PBXGroup;
 			children = (
+				D15B2F232A4A419D00B59707 /* EpisodeModel.swift */,
 				D15B2F212A49FA4B00B59707 /* SeriesDetailsView.swift */,
 				D15B2F2A2A4A6A1400B59707 /* SeriesDetailsViewModel.swift */,
-				D15B2F232A4A419D00B59707 /* EpisodeModel.swift */,
 			);
 			path = SeriesDetails;
 			sourceTree = "<group>";

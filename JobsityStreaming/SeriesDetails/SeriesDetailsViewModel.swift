@@ -2,9 +2,11 @@ import SwiftUI
 
 class SeriesDetailsViewModel: ObservableObject {
     var networkRequest = NetworkRequest()
+    let seriesDetails: SeriesModel
+    var numberOfEpisodes: Int = 0
+    var numberOfSeasons: Int = 0
     @Published var episodes: [EpisodeModel] = []
     @Published var groupedEpisodes: [Int: [EpisodeModel]] = [:]
-    let seriesDetails: SeriesModel
 
     public init(seriesDetails: SeriesModel ) {
         self.seriesDetails = seriesDetails
@@ -16,7 +18,9 @@ class SeriesDetailsViewModel: ObservableObject {
                 let fetchedEpisode = try await networkRequest.fetchEpisodes(with: seriesDetails.id)
                 await MainActor.run {
                     self.episodes = fetchedEpisode
+                    numberOfEpisodes = episodes.count
                     self.groupedEpisodes = Dictionary(grouping: fetchedEpisode, by: {$0.season})
+                    numberOfSeasons = groupedEpisodes.count
                 }
             } catch {
                 print(error.localizedDescription)

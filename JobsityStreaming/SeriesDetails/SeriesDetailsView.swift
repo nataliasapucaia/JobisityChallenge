@@ -43,7 +43,7 @@ struct SeriesDetailsView: View {
                 EpisodesView(viewModel: viewModel)
             }
         }
-//        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline)
         .background(
             Color("DarkBlue")
         )
@@ -123,31 +123,23 @@ struct EpisodesView: View {
     var viewModel: SeriesDetailsViewModel
 
     var body: some View {
-        VStack(alignment: .leading) {
+        List {
             ForEach(viewModel.groupedEpisodes.keys.sorted(), id: \.self) { season in
-                VStack(alignment: .leading) {
-                    Text("Season \(season)")
-                        .font(.title2)
-                        .foregroundColor(.white)
-                        .padding()
-
-                    ForEach(viewModel.groupedEpisodes[season] ?? [], id: \.self) { episode in
+                Section {
+                    ForEach(viewModel.groupedEpisodes[season]!, id: \.self) { episode in
                         NavigationLink(destination: EpisodeDetailsView(viewModel: EpisodeDetailsViewModel(seriesId: viewModel.seriesDetails.id, season: episode.season, number: episode.number))) {
-                            HStack {
-                                Text("\(episode.number). \(episode.name)")
-                                    .font(.title3)
-                                    .foregroundColor(.white)
-                                    .padding(.leading)
-                                    .padding(.top, 2)
-                            }
+                            Text("\(episode.number). \(episode.name)")
                         }
-                        Divider()
-                            .background(.gray)
-                            .padding([.leading, .trailing])
                     }
+                } header: {
+                    Text("Season \(season)")
                 }
-                .padding(.vertical, 10)
             }
+            .listRowBackground(Color.clear)
         }
+        .frame(minHeight: (CGFloat(viewModel.numberOfEpisodes) * 45) + (CGFloat(viewModel.numberOfSeasons) * 45))
+        .scrollDisabled(true)
+        .foregroundColor(Color.white)
+        .scrollContentBackground(.hidden)
     }
 }
