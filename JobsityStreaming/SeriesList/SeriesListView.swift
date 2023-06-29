@@ -15,9 +15,9 @@ struct SeriesListView: View {
                     noResult
                 }
             }
-            .searchable(text: $viewModel.searchText)
-            .foregroundColor(.white)
         }
+        .searchable(text: $viewModel.searchText)
+        .foregroundColor(.white)
         .onAppear{
             viewModel.onAppear()
         }
