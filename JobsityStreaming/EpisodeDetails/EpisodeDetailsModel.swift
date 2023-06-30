@@ -7,17 +7,15 @@
 
 import Foundation
 
-struct EpisodeDetailsModel: Codable {
+struct EpisodeDetailsModel: Codable, Equatable {
+    static func == (lhs: EpisodeDetailsModel, rhs: EpisodeDetailsModel) -> Bool {
+        lhs.id == rhs.id
+    }
+
     let id: Int
     let name: String
     let number: Int
     let season: Int
     let summary: String
-    let image: EpisodeImage?
-}
-
-
-struct EpisodeImage: Codable {
-    let medium: String?
-    let original: String?
+    let image: Images?
 }

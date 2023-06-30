@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D11FAB792A4E5D3E0025FE32 /* MockNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11FAB782A4E5D3E0025FE32 /* MockNetworkRequest.swift */; };
+		D11FAB7C2A4E5D6C0025FE32 /* EpisodeDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11FAB7B2A4E5D6C0025FE32 /* EpisodeDetailsViewModelTests.swift */; };
+		D11FAB7E2A4E5D8C0025FE32 /* SeriesDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11FAB7D2A4E5D8C0025FE32 /* SeriesDetailsViewModelTests.swift */; };
+		D11FAB802A4E5DAE0025FE32 /* SeriesListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11FAB7F2A4E5DAE0025FE32 /* SeriesListViewModelTests.swift */; };
 		D15B2F102A49DB2400B59707 /* JobsityStreamingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15B2F0F2A49DB2400B59707 /* JobsityStreamingApp.swift */; };
 		D15B2F122A49DB2400B59707 /* SeriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15B2F112A49DB2400B59707 /* SeriesListView.swift */; };
 		D15B2F142A49DB2600B59707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D15B2F132A49DB2600B59707 /* Assets.xcassets */; };
@@ -24,7 +28,23 @@
 		D1CC7C1B2A4DBB1B006A4960 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC7C1A2A4DBB1B006A4960 /* AsyncImageView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D11FAB6E2A4E5C640025FE32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D15B2F042A49DB2400B59707 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D15B2F0B2A49DB2400B59707;
+			remoteInfo = JobsityStreaming;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		D11FAB6A2A4E5C640025FE32 /* JobsityStreamingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JobsityStreamingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D11FAB782A4E5D3E0025FE32 /* MockNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequest.swift; sourceTree = "<group>"; };
+		D11FAB7B2A4E5D6C0025FE32 /* EpisodeDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		D11FAB7D2A4E5D8C0025FE32 /* SeriesDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		D11FAB7F2A4E5DAE0025FE32 /* SeriesListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesListViewModelTests.swift; sourceTree = "<group>"; };
+		D11FAB812A4E5E530025FE32 /* JobsityStreaming.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = JobsityStreaming.xctestplan; sourceTree = "<group>"; };
 		D15B2F0C2A49DB2400B59707 /* JobsityStreaming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobsityStreaming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D15B2F0F2A49DB2400B59707 /* JobsityStreamingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsityStreamingApp.swift; sourceTree = "<group>"; };
 		D15B2F112A49DB2400B59707 /* SeriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesListView.swift; sourceTree = "<group>"; };
@@ -44,6 +64,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D11FAB672A4E5C640025FE32 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D15B2F092A49DB2400B59707 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -54,10 +81,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D11FAB6B2A4E5C640025FE32 /* JobsityStreamingTests */ = {
+			isa = PBXGroup;
+			children = (
+				D11FAB7A2A4E5D500025FE32 /* ViewModelTests */,
+				D11FAB772A4E5D200025FE32 /* Mocks */,
+			);
+			path = JobsityStreamingTests;
+			sourceTree = "<group>";
+		};
+		D11FAB772A4E5D200025FE32 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				D11FAB782A4E5D3E0025FE32 /* MockNetworkRequest.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		D11FAB7A2A4E5D500025FE32 /* ViewModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				D11FAB7B2A4E5D6C0025FE32 /* EpisodeDetailsViewModelTests.swift */,
+				D11FAB7D2A4E5D8C0025FE32 /* SeriesDetailsViewModelTests.swift */,
+				D11FAB7F2A4E5DAE0025FE32 /* SeriesListViewModelTests.swift */,
+			);
+			path = ViewModelTests;
+			sourceTree = "<group>";
+		};
 		D15B2F032A49DB2400B59707 = {
 			isa = PBXGroup;
 			children = (
+				D11FAB812A4E5E530025FE32 /* JobsityStreaming.xctestplan */,
 				D15B2F0E2A49DB2400B59707 /* JobsityStreaming */,
+				D11FAB6B2A4E5C640025FE32 /* JobsityStreamingTests */,
 				D15B2F0D2A49DB2400B59707 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				D15B2F0C2A49DB2400B59707 /* JobsityStreaming.app */,
+				D11FAB6A2A4E5C640025FE32 /* JobsityStreamingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +184,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D11FAB692A4E5C640025FE32 /* JobsityStreamingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D11FAB702A4E5C640025FE32 /* Build configuration list for PBXNativeTarget "JobsityStreamingTests" */;
+			buildPhases = (
+				D11FAB662A4E5C640025FE32 /* Sources */,
+				D11FAB672A4E5C640025FE32 /* Frameworks */,
+				D11FAB682A4E5C640025FE32 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D11FAB6F2A4E5C640025FE32 /* PBXTargetDependency */,
+			);
+			name = JobsityStreamingTests;
+			productName = JobsityStreamingTests;
+			productReference = D11FAB6A2A4E5C640025FE32 /* JobsityStreamingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D15B2F0B2A49DB2400B59707 /* JobsityStreaming */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D15B2F1A2A49DB2600B59707 /* Build configuration list for PBXNativeTarget "JobsityStreaming" */;
@@ -156,6 +231,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					D11FAB692A4E5C640025FE32 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = D15B2F0B2A49DB2400B59707;
+					};
 					D15B2F0B2A49DB2400B59707 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -177,11 +256,19 @@
 			projectRoot = "";
 			targets = (
 				D15B2F0B2A49DB2400B59707 /* JobsityStreaming */,
+				D11FAB692A4E5C640025FE32 /* JobsityStreamingTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D11FAB682A4E5C640025FE32 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D15B2F0A2A49DB2400B59707 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -194,6 +281,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D11FAB662A4E5C640025FE32 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D11FAB802A4E5DAE0025FE32 /* SeriesListViewModelTests.swift in Sources */,
+				D11FAB7E2A4E5D8C0025FE32 /* SeriesDetailsViewModelTests.swift in Sources */,
+				D11FAB792A4E5D3E0025FE32 /* MockNetworkRequest.swift in Sources */,
+				D11FAB7C2A4E5D6C0025FE32 /* EpisodeDetailsViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D15B2F082A49DB2400B59707 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -216,7 +314,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D11FAB6F2A4E5C640025FE32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D15B2F0B2A49DB2400B59707 /* JobsityStreaming */;
+			targetProxy = D11FAB6E2A4E5C640025FE32 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		D11FAB712A4E5C640025FE32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TR66A4HVVB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.JobsityStreamingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JobsityStreaming.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JobsityStreaming";
+			};
+			name = Debug;
+		};
+		D11FAB722A4E5C640025FE32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TR66A4HVVB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.JobsityStreamingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JobsityStreaming.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JobsityStreaming";
+			};
+			name = Release;
+		};
 		D15B2F182A49DB2600B59707 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -394,6 +536,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D11FAB702A4E5C640025FE32 /* Build configuration list for PBXNativeTarget "JobsityStreamingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D11FAB712A4E5C640025FE32 /* Debug */,
+				D11FAB722A4E5C640025FE32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D15B2F072A49DB2400B59707 /* Build configuration list for PBXProject "JobsityStreaming" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "6C5772BB-0461-4ABC-BE81-2B444147DD30",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:JobsityStreaming.xcodeproj",
+      "identifier" : "D15B2F0B2A49DB2400B59707",
+      "name" : "JobsityStreaming"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:JobsityStreaming.xcodeproj",
+        "identifier" : "D11FAB692A4E5C640025FE32",
+        "name" : "JobsityStreamingTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -36,6 +36,7 @@ class SeriesListViewModel: ObservableObject {
                     self.initialSeries.append(contentsOf: series)
                 }
             } catch {
+                requestState = .fetched
                 print(error.localizedDescription)
             }
         }
@@ -65,6 +66,7 @@ class SeriesListViewModel: ObservableObject {
                     }
                 }
             } catch {
+                requestState = .fetched
                 print(error.localizedDescription)
             }
         }
